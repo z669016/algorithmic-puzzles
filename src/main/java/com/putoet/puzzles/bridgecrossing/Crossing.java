@@ -4,8 +4,7 @@ import java.util.*;
 
 public class Crossing {
     public static void main(String[] args) {
-        final Crossing crossing = new Crossing();
-        final Optional<State> solution = crossing.solve();
+        final Optional<State> solution = Crossing.solve();
 
         if (solution.isEmpty())
             System.out.println("No solution found");
@@ -13,7 +12,7 @@ public class Crossing {
             System.out.println("People crossed in just " + solution.get().totalTimeCrossed() + " minutes");
     }
 
-    public State initial() {
+    public static State initial() {
         return new State(
                 Set.of(Person.ONE, Person.TWO, Person.THREE, Person.FOUR),
                 Set.of(),
@@ -21,14 +20,14 @@ public class Crossing {
                 true);
     }
 
-    public List<State> successors(State state) {
+    public static List<State> successors(State state) {
         if (state.flashLightAtTheLeft())
             return successorsFromLeftToRight(state);
 
         return successorsFromRightToLeft(state);
     }
 
-    private List<State> successorsFromLeftToRight(State state) {
+    private static List<State> successorsFromLeftToRight(State state) {
         final List<State> next = new ArrayList<>();
         for (Person first : state.left()) {
             for (Person second : state.left()) {
@@ -53,7 +52,7 @@ public class Crossing {
         return next;
     }
 
-    private List<State> successorsFromRightToLeft(State state) {
+    private static List<State> successorsFromRightToLeft(State state) {
         final List<State> next = new ArrayList<>();
         for (Person first : state.right()) {
             final Set<Person> left = new HashSet<>(state.left());
@@ -72,13 +71,13 @@ public class Crossing {
         return next;
     }
 
-    public boolean goalTest(State state) {
+    public static boolean goalTest(State state) {
         return state.left().isEmpty() &&
                 state.right().containsAll(Set.of(Person.ONE, Person.TWO, Person.THREE, Person.FOUR)) &&
                 !state.flashLightAtTheLeft();
     }
 
-    public Optional<State> solve() {
+    public static Optional<State> solve() {
         final Set<State> visited = new HashSet<>();
         final PriorityQueue<State> queue = new PriorityQueue<>();
         queue.offer(initial());
