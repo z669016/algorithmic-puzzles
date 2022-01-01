@@ -3,25 +3,21 @@
 Puzzles from the book *Algorithmic Puzzles* by Anani and Maria Levitin (2011).
 
 ## 1. A Wolf, a Goat, and a Cabbage
-Solution can be found by generic breadth first search, where the initial state 
-is that the boat, wolf, goat and cabbage are on the west bank. The stop-state is
-all items are at the east bank. Possible next state is a list of states where the 
-boat to the other side, optionally taking one of the items from the side where 
-the boat currently. You need to filter out states that leave an invalid states on 
-the opposite side (where the boat is not).
+Solution can be found by generic breadth first search, where the initial state is that the boat, wolf, goat and 
+cabbage are on the west bank. The stop-state is all items are at the east bank. Possible next state is a list of 
+states where the boat to the other side, optionally taking one of the items from the side where the boat currently. You
+need to filter out states that leave an invalid states on the opposite side (where the boat is not).
 
 ## 2. Glove selection
 20 gloves (10 pairs black, 3 pairs brown, 2 pairs gray).
 1) how many gloves to pick to guarantee 1 pair with matching colour?
 2) How many gloves to pick to guarantee 3 matching pairs of all colours?
 
-To get one matching pair you need to make 11 picks, cause worst case the first 10 
-you pick are all left or right gloves, so no pair. The eleventh one will make a pair 
-for sure.
+To get one matching pair you need to make 11 picks, cause worst case the first 10 you pick are all left or right 
+gloves, so no pair. The eleventh one will make a pair for sure.
 
-To get three matching pairs, you need to pick 19 gloves. Again the first 10
-could be all left-hand gloves. Then worst case you pick five black right-hand 
-gloves, then three brown ones and finally a gray one at which point you for sure
+To get three matching pairs, you need to pick 19 gloves. Again the first 10 could be all left-hand gloves. Then worst 
+case you pick five black right-hand gloves, then three brown ones and finally a gray one at which point you for sure 
 have three matching pairs of different colour.
 
 ## 3. Rectangle Dissection
@@ -37,13 +33,15 @@ In addition, you can first cut the rectangle into multiple rectangles along any 
 after which each rectangle can be cut into two right triangles (step 1).
 
 ## 4. Ferrying soldiers
-The boat can carry two boys, or one soldier, or ... one boy (of course). To get
-one soldier across, first one of the boys is moved to the opposite side, which takes
-2 crossings (2 boys on the first crossing, onw boy back). Now, one soldier can take 
-the boat and cross. Finally, the boy across brings the boat back to the first boy, and
-the sequence can start over again. So, it takes 4 crossing to transfer one soldier,
-which makes 100 crossings to transfer 25 soldiers, leaving the  boat at one  side 
-with the two boys.
+The boat can carry two boys, or one soldier, or ... one boy (of course). To get one soldier across, first one
+of the boys is moved to the opposite side, which takes 2 crossings (2 boys on the first crossing, onw boy back). Now, 
+one soldier can take the boat and cross. Finally, the boy across brings the boat back to the first boy, and the 
+sequence can start over again. So, it takes 4 crossing to transfer one soldier, which makes 100 crossings to transfer 
+25 soldiers, leaving the  boat at one  side with the two boys.
+
+This one can be solved as well using a BFS with a ```State``` containing the number of soldiers on the left and the 
+right, the number of boys on the left and the right, the position of the boat, and the number of crossings. The final 
+state should have all the soldiers on the right and the two boys at at the same side as the boat.
 
 ## 5. Row and Column exchanges
 Whenever you switch a row or a column, the number in the row, or the numbers in the 
